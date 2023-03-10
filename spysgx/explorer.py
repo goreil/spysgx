@@ -3,7 +3,7 @@ import logging
 # Define a custom exploration technique class
 logger = logging.getLogger(__name__)
 
-class EnclaveExploration(ExplorationTechnique):
+class PrintSymbolsExplorer(ExplorationTechnique):
     # Override the step method
     def step(self, simgr, stash='active', **kwargs):
         # Get the current state

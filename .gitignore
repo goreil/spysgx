@@ -12,3 +12,6 @@ __pycache__
 # Testing files for development
 dev_testing/*
 dev*
+
+# Pickles
+*.pickle

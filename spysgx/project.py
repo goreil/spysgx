@@ -5,7 +5,7 @@ import re
 import angr
 import guardian
 
-from .explorer import EnclaveExploration
+from .explorer import PrintSymbolsExplorer
 
 logger = logging.getLogger(__name__)
 info, debug = logger.info, logger.debug
@@ -51,7 +51,7 @@ class Project:
         self.guard.set_target_ecall(ecall_id)
         
         # Use a custom exploration technique to print out the current symbol for debugging
-        self.guard.simgr.use_technique(EnclaveExploration())
+        self.guard.simgr.use_technique(PrintSymbolsExplorer())
 
         self.traces = None # Will be set by dump_trace
         ecall_name = re.match(r"^sgx_(.*)", target_ecall).group(1)
