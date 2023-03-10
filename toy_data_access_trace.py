@@ -23,4 +23,5 @@ else:
 
 # Set the secret value (First parameter)
 proj.guard.simgr.active[0].regs.rdi = SECRET
-simgr = proj.dump_trace(TRACEFILE, kind="mem")
+
+raise NotImplementedError

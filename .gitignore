@@ -1,9 +1,6 @@
 __pycache__
 
 
-# temporarily generated traces
-spysgx.out
-
 # Ida temp files
 *.id0
 *.id1

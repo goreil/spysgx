@@ -1,10 +1,10 @@
 """This script traces the square and multiply enclave."""
-import spysgx.project
 import logging
 import pathlib
 import pickle
 import os
 
+import spysgx.project
 SECRET = 1337
 
 PARENT_PATH = pathlib.Path(__file__).parent
@@ -19,7 +19,7 @@ if os.path.exists(PICKLE_PATH):
     with open(PICKLE_PATH, "rb") as f:
         proj = pickle.load(f)
 else:
-    proj = spysgx.project.Project(ENCLAVE_PATH, "sgx_mod_exp", PICKLE_PATH)
+    proj = spysgx.Project(ENCLAVE_PATH, "sgx_mod_exp", PICKLE_PATH)
 # Try to reach the mod_exp function
 # Set the secret value
 proj.guard.simgr.active[0].regs.rsi = SECRET
