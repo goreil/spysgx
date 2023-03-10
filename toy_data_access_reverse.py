@@ -1,9 +1,9 @@
 """ This script traces the execution of the toy_data_access enclave. """
 import logging
 import pathlib
-import claripy
 import os
 import pickle
+import claripy
 
 import spysgx.project
 

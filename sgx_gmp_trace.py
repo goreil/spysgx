@@ -9,7 +9,7 @@ import spysgx.project
 SECRET = 10
 PARENT_PATH = pathlib.Path(__file__).parent
 ENCLAVE_PATH = PARENT_PATH / "enclaves" / "sgx_gmp_2.6.signed.so"
-TRACEFILE = PARENT_PATH/ "traces" / "sgx_gmp" / "trace.txt"
+TRACEFILE = PARENT_PATH / "traces" / "sgx_gmp" / "trace.txt"
 PICKLE_PATH = PARENT_PATH / "cache" / "sgx_gmp.pickle"
 
 logging.getLogger("spysgx").setLevel(logging.DEBUG)

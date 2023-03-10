@@ -9,3 +9,6 @@ __pycache__
 *.nam
 *.til
 
+# Testing files for development
+dev_testing/*
+dev*
