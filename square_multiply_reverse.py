@@ -1,17 +1,24 @@
-import spysgx.project
-import claripy
+"""This script reverses the square multiply enclave to find the secret value."""
 import logging
 import pathlib
+import os
+import pickle
+import claripy
+
+import spysgx.project
 
 PARENT_PATH = pathlib.Path(__file__).parent
 ENCLAVE_PATH = PARENT_PATH / "enclaves" / "square_multiply.signed.so"
-TRACEFILE = PARENT_PATH/ "traces" / "square_multiply" / "trace.txt"
+TRACEFILE = PARENT_PATH / "traces" / "square_multiply" / "trace.txt"
+PICKLE_PATH = PARENT_PATH / "cache" / "square_multiply.pickle"
 
 logging.getLogger("spysgx").setLevel(logging.DEBUG)
 
-proj = spysgx.project.Project(ENCLAVE_PATH)
-# Try to reach the mod_exp function
-proj.reach_symbol("mod_exp")
+if os.path.exists(PICKLE_PATH):
+    with open(PICKLE_PATH, "rb") as f:
+        proj = pickle.load(f)
+else:
+    proj = spysgx.project.Project(ENCLAVE_PATH, "sgx_mod_exp", PICKLE_PATH)
 
 # Reversing
 secret = claripy.BVS("secret", 64)

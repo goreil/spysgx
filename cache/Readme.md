@@ -1,0 +1,1 @@
+This folder contains pickle files of spysgx project so further analysis can be run much smoother.
