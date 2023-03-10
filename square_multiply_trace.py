@@ -3,9 +3,13 @@ import logging
 import pathlib
 import pickle
 import os
+import sys
 
 import spysgx.project
 SECRET = 1337
+
+if len (sys.argv) > 1:
+    SECRET = int(sys.argv[1])
 
 PARENT_PATH = pathlib.Path(__file__).parent
 ENCLAVE_PATH = PARENT_PATH / "enclaves" / "square_multiply.signed.so"
@@ -23,4 +27,4 @@ else:
 # Try to reach the mod_exp function
 # Set the secret value
 proj.guard.simgr.active[0].regs.rsi = SECRET
-proj.dump_trace(TRACEFILE)
+spysgx.trace(proj.guard.simgr, TRACEFILE)

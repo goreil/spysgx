@@ -22,6 +22,5 @@ else:
     proj = spysgx.Project(ENCLAVE_PATH, "sgx_ecall_access_data", PICKLE_PATH)
 # Set the secret value (First parameter)
 
+raise NotImplementedError
 proj.guard.simgr.active[0].regs.rdi = SECRET
-simgr = proj.dump_trace(TRACEFILE, kind="mem")
-state = simgr.found[0]

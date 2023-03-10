@@ -23,5 +23,4 @@ else:
 
 # Set the secret value (First parameter)
 proj.guard.simgr.active[0].regs.rdi = SECRET
-
-raise NotImplementedError
+spysgx.trace(proj.guard.simgr, TRACEFILE, kind="mem")

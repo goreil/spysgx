@@ -4,7 +4,11 @@ logger = logging.getLogger(__name__)
 info = logger.info
 
 def reverse_trace(simgr, infile):
-    """Reverses the state by comparing the executed instructions to the trace. Returns the simgr."""
+    """
+    Reverses the state by comparing the executed instructions to the trace. Returns the simgr.
+    The reason why we use the simgr instead of state is because we want to have a specific ExplorationTechnique.
+    """
+    simgr = simgr.copy()
     assert len(simgr.active) == 1, "Only one active state is supported"
     callstack_size = len(simgr.active[0].callstack)
 

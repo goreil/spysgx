@@ -21,4 +21,4 @@ else:
     proj = spysgx.Project(ENCLAVE_PATH, "sgx_e_pi", PICKLE_PATH)
 # Set the secret value (First parameter)
 proj.guard.simgr.active[0].regs.rdi = SECRET
-proj.dump_trace(TRACEFILE)
+spysgx.trace(proj.guard.simgr, TRACEFILE)
