@@ -22,5 +22,5 @@ else:
 # Reversing
 secret = claripy.BVS("secret", 64)
 proj.guard.simgr.active[0].regs.rsi = secret
-simgr = spysgx.reverse_trace(proj.guard.simgr, TRACEFILE) 
+simgr = spysgx.reverse(proj.guard.simgr, TRACEFILE) 
 print("Secret =", simgr.found[0].solver.eval(secret, cast_to=int))
