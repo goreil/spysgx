@@ -10,32 +10,32 @@ def reverse(simgr, infile, kind="inst", **kwargs):
     """
     # TODO load the trace from the file
 
+    info("Reading trace from %s", infile)
+    with open(infile, "r") as f:
+        traces = [int(line, 16) for line in f]
+
     simgr = simgr.copy()
     if kind == "inst":
-        return _reverse_inst(simgr, infile, **kwargs)
+        return _reverse_inst(simgr, traces, **kwargs)
     elif kind == "mem":
-        return _reverse_mem(simgr, infile, **kwargs)
+        return _reverse_mem(simgr, traces, **kwargs)
     else:
         raise ValueError(f"Unknown reverse kind {kind}")
 
 
-def _reverse_inst(simgr, infile, **kwargs):
+def _reverse_inst(simgr, traces, **kwargs):
     """
     Reverses the state by comparing the executed instructions to the trace. Returns the simgr.
     """
     # Implement as a ExplorationTechnique to be able to use **kwargs
     assert len(simgr.active) == 1, "Only one active state is supported"
-    if len(**kwargs) > 0:
+    if len(kwargs) > 0:
         raise NotImplementedError("Unknown arguments: %s" % kwargs.keys())
 
     callstack_size = len(simgr.active[0].callstack)
 
     def done(state):
         return len(state.callstack) < callstack_size
-
-    info("Reading trace from %s", infile)
-    with open(infile, "r") as f:
-        traces = [int(line, 16) for line in f]
 
     def impossible(state):
         """Returns False if the current state is impossible by comparing the executed instructions to the trace"""
@@ -56,11 +56,9 @@ def _reverse_inst(simgr, infile, **kwargs):
             s.globals["executed_instructions"] += s.block().instructions
 
         simgr.step()
-    return simgr
+    return simgr.found[0].solver
 
-def _reverse_mem(simgr, tracefile, **kwargs):
-    with open(tracefile, "r") as f:
-        traces = [int(line.strip(), 16) for line in f.readlines()]
+def _reverse_mem(simgr, traces, **kwargs):
 
     if "find" not in kwargs:
         callstack_size = len(simgr.active[0].callstack)
@@ -72,11 +70,16 @@ def _reverse_mem(simgr, tracefile, **kwargs):
 
     simgr.active[0].options.add(angr.options.TRACK_MEMORY_ACTIONS)
 
-    simgr.explore(find = find)
+    simgr.explore(find=find)
+    
     # Reverse the secret from the trace
     state = simgr.found[0]
+    # Create s new solver instance since the state.solver is pollued with constraints
+    # from the memory accesses
+    proj = state.project
+    solver = proj.factory.blank_state().solver
     for action in state.history.actions:
         if action.type == "mem":
-            state.add_constraints(action.addr == traces.pop(0))
+            solver.add(action.addr == traces.pop(0))
 
-    return simgr
+    return solver 
