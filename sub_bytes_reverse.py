@@ -8,10 +8,11 @@ import claripy
 import spysgx.project
 
 SECRET = claripy.BVS("secret", 64)
+NAME = "sub_bytes"
 PARENT_PATH = pathlib.Path(__file__).parent
-ENCLAVE_PATH = PARENT_PATH / "enclaves" / "toy_data_access.signed.so"
-PICKLE_PATH = PARENT_PATH / "cache" / "toy_data_access.pickle"
-TRACEFILE = PARENT_PATH / "traces" / "toy_data_access" / "trace.txt"
+ENCLAVE_PATH = PARENT_PATH / "enclaves" / f"{NAME}.signed.so"
+PICKLE_PATH = PARENT_PATH / "cache" / f"{NAME}.pickle"
+TRACEFILE = PARENT_PATH / "traces" / f"{NAME}" / "trace.txt"
 
 logging.getLogger("spysgx").setLevel(logging.DEBUG)
 
@@ -26,4 +27,4 @@ proj.guard.simgr.active[0].regs.rdi = SECRET
 # Reverse the trace
 state = spysgx.reverse(proj.guard.simgr, TRACEFILE, kind="mem")
 # Print the secret value
-print(state.solver.eval(SECRET))
+print("SECRET = " + hex(state.solver.eval(SECRET)))

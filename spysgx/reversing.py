@@ -1,6 +1,7 @@
 """This containst functions to reverse secrets from traces. """
 import logging
 import angr
+from copy import copy
 logger = logging.getLogger(__name__)
 info = logger.info
 
@@ -56,7 +57,7 @@ def _reverse_inst(simgr, traces, **kwargs):
             s.globals["executed_instructions"] += s.block().instructions
 
         simgr.step()
-    return simgr.found[0].solver
+    return simgr.found[0]
 
 def _reverse_mem(simgr, traces, **kwargs):
 
@@ -73,13 +74,14 @@ def _reverse_mem(simgr, traces, **kwargs):
     simgr.explore(find=find)
     
     # Reverse the secret from the trace
-    state = simgr.found[0]
+
     # Create s new solver instance since the state.solver is pollued with constraints
     # from the memory accesses
-    proj = state.project
-    solver = proj.factory.blank_state().solver
-    for action in state.history.actions:
+    proj = simgr.found[0].project
+    state = proj.factory.blank_state()
+    
+    for action in simgr.found[0].history.actions:
         if action.type == "mem":
-            solver.add(action.addr == traces.pop(0))
+            state.add_constraints(action.addr == traces.pop(0))
 
-    return solver 
+    return state.copy()
