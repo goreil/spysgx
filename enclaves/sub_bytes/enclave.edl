@@ -1,0 +1,10 @@
+#include <stdbool.h>
+enclave {
+    untrusted { };
+
+    trusted {
+        // ECALL
+        public uint64_t ecall_SubBytes(uint64_t secret);
+    };
+    
+};

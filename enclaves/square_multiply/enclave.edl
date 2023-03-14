@@ -1,0 +1,11 @@
+enclave {
+    untrusted {
+        // OCALL
+    };
+
+    trusted {
+        // ECALL
+        public uint64_t mod_exp(uint64_t base, uint32_t exp, uint64_t mod);
+    };
+    
+};
