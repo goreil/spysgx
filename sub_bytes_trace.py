@@ -2,12 +2,17 @@
 import logging
 import pathlib
 import pickle
-import os.path
+import os
+import sys
 
 import claripy
 import spysgx
 
 SECRET = claripy.BVV(0x0001020304050607, 64)
+if len(sys.argv) > 1:
+    SECRET = claripy.BVV(int(sys.argv[1], 0), 64)
+
+print("Secret: ", SECRET)
 NAME = "sub_bytes"
 PARENT_PATH = pathlib.Path(__file__).parent
 ENCLAVE_PATH = PARENT_PATH / "enclaves" / f"{NAME}.signed.so"

@@ -4,6 +4,7 @@ import angr
 from copy import copy
 logger = logging.getLogger(__name__)
 info = logger.info
+debug = logger.debug
 
 def reverse(simgr, infile, kind="inst", **kwargs):
     """Reverses the secret from the trace. Returns the simgr.
@@ -70,7 +71,9 @@ def _reverse_mem(simgr, traces, **kwargs):
 
     simgr.active[0].options.add(angr.options.TRACK_MEMORY_ACTIONS)
 
+    debug("Exploring until %s", find)
     simgr.explore(find=find)
+    debug("Exploration complete")
     
     # Reverse the secret from the trace
 
@@ -79,8 +82,10 @@ def _reverse_mem(simgr, traces, **kwargs):
     proj = simgr.found[0].project
     state = proj.factory.blank_state()
     
+    # Add constraints from the trace
     for action in simgr.found[0].history.actions:
         if action.type == "mem":
+            debug("Adding constraint %s == 0x%x", action.addr, traces[0])
             state.add_constraints(action.addr == traces.pop(0))
 
     return state.copy()
