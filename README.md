@@ -2,8 +2,8 @@
 Memory tracing and reversing of SGX-Enclaves
 
 ## Requirements
-angr=9.2.29 
-guardian (https://github.com/blockhousetech/guardian)
+* angr=9.2.29 
+* guardian (https://github.com/blockhousetech/guardian)
 
 
 ## Basic examples:
