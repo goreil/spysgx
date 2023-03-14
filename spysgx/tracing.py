@@ -28,7 +28,7 @@ def _collect_trace_instructions(state):
 def trace(simgr, outfile, kind="inst", until_return=True, **kwargs):
     """Dumps the trace to a file. Returns the simgr."""
     setup = {
-        "mem": {angr.options.TRACK_MEMORY_ACTIONS},
+        "mem": {"TRACK_MEMORY_ACTIONS"},
         "inst": set(),
     }
 

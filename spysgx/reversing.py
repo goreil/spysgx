@@ -9,7 +9,6 @@ def reverse(simgr, infile, kind="inst", **kwargs):
     """Reverses the secret from the trace. Returns the simgr.
     The reason why we use the simgr instead of state is because we want to have a specific ExplorationTechnique.
     """
-    # TODO load the trace from the file
 
     info("Reading trace from %s", infile)
     with open(infile, "r") as f:
