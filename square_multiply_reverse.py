@@ -9,11 +9,7 @@ import click
 import spysgx
 PARENT_PATH = pathlib.Path(__file__).parent
 ENCLAVE_PATH = PARENT_PATH / "enclaves" / "square_multiply.signed.so"
-TRACEFILE = PARENT_PATH / "traces" / "square_multiply" / "trace.txt"
 PICKLE_PATH = PARENT_PATH / "cache" / "square_multiply.pickle"
-
-logging.getLogger("spysgx").setLevel(logging.DEBUG)
-
 
 @click.command()
 @click.option("--tracefolder", default=PARENT_PATH / "traces" / "square_multiply", help="The trace folder that contains the secrets.")

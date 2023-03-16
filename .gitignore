@@ -15,3 +15,6 @@ dev*
 
 # Pickles
 *.pickle
+
+# traces
+trace*.txt
