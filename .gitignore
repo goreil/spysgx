@@ -18,6 +18,7 @@ dev*
 
 # traces
 trace*.txt
+trace*.csv
 
 # analysis data files
 analysis/*.csv

@@ -1,0 +1,6 @@
+figure.figsize : 10, 7
+
+axes.labelsize : 16
+legend.fontsize : 14
+xtick.labelsize : 14
+ytick.labelsize : 14
