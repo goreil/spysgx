@@ -43,7 +43,8 @@ side-channel attacks
 * angr=9.2.29 
 * guardian https://github.com/blockhousetech/guardian
 * At time of writing guardian only supports enclaves that are build with Intel SDK version 2.12
-*
+
+
 ## Basic examples:
 * Instruction tracing: `python3 square_multiply_trace.py [SECRET]`
 * Instruction reversing: `python3 square_multiply_reverse.py`
