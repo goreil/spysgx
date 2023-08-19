@@ -1,4 +1,11 @@
 # SpySGX: Automatic Reversing of Secrets from Memory Traces in SGX-Enclaves
+![2023-08-07_SpySGX_Poster-1](https://github.com/goreil/spysgx/assets/90871590/d7683850-4ffe-4177-90d8-cf3e104add50)
+
+## Guided symbolic Execution animated
+<img src="https://github.com/goreil/spysgx/assets/90871590/946aaee5-ac2c-489e-bc68-503675181f36" width="400" height="250"/>
+
+
+
 ## What can this do?
 1. It's an Emulator that helps **collect memory accesses** on Intel SGX-Enclaves:
 Give it a Intel-SGX enclave, select a function and you can trace the memory accesses. 
@@ -27,6 +34,10 @@ full trace, verifying the existence of a side-channel vulnerability. Furthermore
 missing instruction heuristic successfully recovers the complete secret in 98 % of
 cases with 25 % trace incompleteness. For data-access traces, our dynamic timewarping approach demonstrates near-perfect imputation. These findings emphasize the insufficiency of limiting memory-accesses in preventing memory-based
 side-channel attacks
+
+
+
+
 
 
 ## Thesis
