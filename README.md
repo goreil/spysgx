@@ -11,11 +11,6 @@
 Give it a Intel-SGX enclave, select a function and you can trace the memory accesses. 
 2. It's a automated attacker: Given a memory access trace (created by 1.), it attempts to reverse a select function parameter using symbolic execution.
 
-## Basic examples:
-* Instruction tracing: `python3 square_multiply_trace.py [SECRET]`
-* Instruction reversing: `python3 square_multiply_reverse.py`
-* Data access tracing: `python3 sub_bytes_trace.py [SECRET]`
-* Data access reversing: `python3 sub_bytes_trace.py`
 
 
 ## Abstract
@@ -47,7 +42,14 @@ side-channel attacks
 ## Requirements and Notes
 * angr=9.2.29 
 * guardian https://github.com/blockhousetech/guardian
-* At time of writing guardian only supports enclaves that are build with Intel SDK version 2.12.
+* At time of writing guardian only supports enclaves that are build with Intel SDK version 2.12
+*
+## Basic examples:
+* Instruction tracing: `python3 square_multiply_trace.py [SECRET]`
+* Instruction reversing: `python3 square_multiply_reverse.py`
+* Data access tracing: `python3 sub_bytes_trace.py [SECRET]`
+* Data access reversing: `python3 sub_bytes_trace.py`
+
 
 ## Repository structure
 * `enclaves` contains the target enclaves with their source
