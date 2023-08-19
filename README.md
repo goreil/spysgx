@@ -2,7 +2,7 @@
 ![2023-08-07_SpySGX_Poster-1](https://github.com/goreil/spysgx/assets/90871590/d7683850-4ffe-4177-90d8-cf3e104add50)
 
 ## Guided symbolic Execution animated
-<img src="https://github.com/goreil/spysgx/assets/90871590/946aaee5-ac2c-489e-bc68-503675181f36" width="600" height="400"/>
+<img src="https://github.com/goreil/spysgx/assets/90871590/946aaee5-ac2c-489e-bc68-503675181f36"/>
 
 
 
