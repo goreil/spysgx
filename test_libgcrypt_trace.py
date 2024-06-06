@@ -61,28 +61,6 @@ state.mem[n_addr].struct.gcry_mpi.flags = 0
 state.mem[n_addr].struct.gcry_mpi.d = n_d_addr
 setattr(state.mem[n_d_addr], 'unsigned long', 0x7)
 
-# state.mem[n_addr].struct.gcry_mpi.alloced = 0x10
-# state.mem[n_addr].struct.gcry_mpi.nlimbs = 0x10
-# state.mem[n_addr].struct.gcry_mpi.sign = 0
-# state.mem[n_addr].struct.gcry_mpi.flags = 0
-# state.mem[n_addr].struct.gcry_mpi.d = n_d_addr
-
-# setattr(state.mem[n_d_addr], 'unsigned long', 0x264d749bc2ea0a20)
-# setattr(state.mem[n_d_addr+0x08], 'unsigned long', 0xed143b6289b0d7ff)
-# setattr(state.mem[n_d_addr+0x10], 'unsigned long', 0xb3db022950779ec5)
-# setattr(state.mem[n_d_addr+0x18], 'unsigned long', 0x7aa1c8f0173e658c)
-# setattr(state.mem[n_d_addr+0x20], 'unsigned long', 0x41688fb6de052c53)
-# setattr(state.mem[n_d_addr+0x28], 'unsigned long', 0x082f567da4cbf31a)
-# setattr(state.mem[n_d_addr+0x30], 'unsigned long', 0xcef61d446b92b9e1)
-# setattr(state.mem[n_d_addr+0x38], 'unsigned long', 0x15bce40b325980a7)
-# setattr(state.mem[n_d_addr+0x40], 'unsigned long', 0x2800d9b28b643d13)
-# setattr(state.mem[n_d_addr+0x48], 'unsigned long', 0x613a12ebc49d764f)
-# setattr(state.mem[n_d_addr+0x50], 'unsigned long', 0x9a734c24fdd6af88)
-# setattr(state.mem[n_d_addr+0x58], 'unsigned long', 0xd3ac855e370fe8c1)
-# setattr(state.mem[n_d_addr+0x60], 'unsigned long', 0x0ce5be97704921fa)
-# setattr(state.mem[n_d_addr+0x68], 'unsigned long', 0x461ef7d0a9825b34)
-# setattr(state.mem[n_d_addr+0x70], 'unsigned long', 0x7f583109e2bb946d)
-# setattr(state.mem[n_d_addr+0x78], 'unsigned long', 0x18916a431bf4cda6)
 
 # Prepare state
 state.regs.rdi = x_addr
